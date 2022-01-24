@@ -40,11 +40,6 @@ type Props = {
   tooltip?: string;
 };
 
-type TooltipProps = {
-  children: string;
-  
-};
-
 type TranslateProps = {
   $xTranslate: number;
   $yTranslate: number;
