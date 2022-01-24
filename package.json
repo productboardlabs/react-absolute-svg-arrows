@@ -1,6 +1,6 @@
 {
   "name": "react-absolute-svg-arrows",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -71,11 +71,6 @@
     "rollup": "^2.66.0",
     "rollup-plugin-dts": "^4.1.0"
   },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "source": "dist/index.js",
-  "files": [
-    "dist"
-  ],
+  "main": "dist/index.js",
   "types": "dist/index.d.ts"
 }

@@ -1,19 +1,25 @@
+"use strict";
 /**
  * Copyright (c) ProductBoard, Inc.
  * All rights reserved.
  */
-import { withKnobs, number, boolean, object } from "@storybook/addon-knobs";
-import React from "react";
-import { Arrow } from "../components/Arrow";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Playground = exports.ArrowWithVisibleControlPointsAndBoundingBox = exports.ArrowWithCustomConfig = exports.ArrowInOneLine = exports.InversedArrow = exports.HighlightedArrow = void 0;
+var addon_knobs_1 = require("@storybook/addon-knobs");
+var react_1 = __importDefault(require("react"));
+var Arrow_1 = require("../components/Arrow");
 var isHighlighted = function (defaultValue) {
     if (defaultValue === void 0) { defaultValue = false; }
-    return boolean("Is highlighted", defaultValue);
+    return addon_knobs_1.boolean("Is highlighted", defaultValue);
 };
 var showDebugGuideLines = function (defaultValue) {
     if (defaultValue === void 0) { defaultValue = false; }
-    return boolean("Show debug guide lines", defaultValue);
+    return addon_knobs_1.boolean("Show debug guide lines", defaultValue);
 };
-export var HighlightedArrow = function () {
+var HighlightedArrow = function () {
     var startPoint = {
         x: 100,
         y: 100,
@@ -22,9 +28,10 @@ export var HighlightedArrow = function () {
         x: 600,
         y: 300,
     };
-    return (React.createElement(Arrow, { startPoint: startPoint, endPoint: endPoint, isHighlighted: isHighlighted(true), showDebugGuideLines: showDebugGuideLines() }));
+    return (react_1.default.createElement(Arrow_1.Arrow, { startPoint: startPoint, endPoint: endPoint, isHighlighted: isHighlighted(true), showDebugGuideLines: showDebugGuideLines() }));
 };
-export var InversedArrow = function () {
+exports.HighlightedArrow = HighlightedArrow;
+var InversedArrow = function () {
     var startPoint = {
         x: 600,
         y: 300,
@@ -33,9 +40,10 @@ export var InversedArrow = function () {
         x: 100,
         y: 100,
     };
-    return (React.createElement(Arrow, { startPoint: startPoint, endPoint: endPoint, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines() }));
+    return (react_1.default.createElement(Arrow_1.Arrow, { startPoint: startPoint, endPoint: endPoint, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines() }));
 };
-export var ArrowInOneLine = function () {
+exports.InversedArrow = InversedArrow;
+var ArrowInOneLine = function () {
     var startPoint1 = {
         x: 600,
         y: 100,
@@ -60,12 +68,13 @@ export var ArrowInOneLine = function () {
         x: 600,
         y: 300,
     };
-    return (React.createElement(React.Fragment, null,
-        React.createElement(Arrow, { startPoint: startPoint1, endPoint: endPoint1, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines() }),
-        React.createElement(Arrow, { startPoint: startPoint2, endPoint: endPoint2, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines() }),
-        React.createElement(Arrow, { startPoint: startPoint3, endPoint: endPoint3, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines() })));
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(Arrow_1.Arrow, { startPoint: startPoint1, endPoint: endPoint1, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines() }),
+        react_1.default.createElement(Arrow_1.Arrow, { startPoint: startPoint2, endPoint: endPoint2, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines() }),
+        react_1.default.createElement(Arrow_1.Arrow, { startPoint: startPoint3, endPoint: endPoint3, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines() })));
 };
-export var ArrowWithCustomConfig = function () {
+exports.ArrowInOneLine = ArrowInOneLine;
+var ArrowWithCustomConfig = function () {
     var startPoint = {
         x: 100,
         y: 100,
@@ -82,9 +91,10 @@ export var ArrowWithCustomConfig = function () {
         arrowHeadEndingSize: 15,
         strokeWidth: 2,
     };
-    return (React.createElement(Arrow, { startPoint: startPoint, endPoint: endPoint, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines(), config: config }));
+    return (react_1.default.createElement(Arrow_1.Arrow, { startPoint: startPoint, endPoint: endPoint, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines(), config: config }));
 };
-export var ArrowWithVisibleControlPointsAndBoundingBox = function () {
+exports.ArrowWithCustomConfig = ArrowWithCustomConfig;
+var ArrowWithVisibleControlPointsAndBoundingBox = function () {
     var startPoint = {
         x: 600,
         y: 200,
@@ -93,9 +103,10 @@ export var ArrowWithVisibleControlPointsAndBoundingBox = function () {
         x: 400,
         y: 100,
     };
-    return (React.createElement(Arrow, { startPoint: startPoint, endPoint: endPoint, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines(true) }));
+    return (react_1.default.createElement(Arrow_1.Arrow, { startPoint: startPoint, endPoint: endPoint, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines(true) }));
 };
-export var Playground = function () {
+exports.ArrowWithVisibleControlPointsAndBoundingBox = ArrowWithVisibleControlPointsAndBoundingBox;
+var Playground = function () {
     var options = {
         range: true,
         min: 5,
@@ -103,14 +114,14 @@ export var Playground = function () {
         step: 1,
     };
     var startPoint = {
-        x: number("Ax", 100, options),
-        y: number("Ay", 100, options),
+        x: addon_knobs_1.number("Ax", 100, options),
+        y: addon_knobs_1.number("Ay", 100, options),
     };
     var endPoint = {
-        x: number("Bx", 600, options),
-        y: number("By", 300, options),
+        x: addon_knobs_1.number("Bx", 600, options),
+        y: addon_knobs_1.number("By", 300, options),
     };
-    var config = object("Custom config", {
+    var config = addon_knobs_1.object("Custom config", {
         arrowColor: "#bcc4cc",
         arrowHighlightedColor: "#4da6ff",
         controlPointsColor: "#fe4e4e",
@@ -121,10 +132,10 @@ export var Playground = function () {
         hoverableLineWidth: 10,
         strokeWidth: 1,
     });
-    return (React.createElement(Arrow, { startPoint: startPoint, endPoint: endPoint, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines(), config: config }));
+    return (react_1.default.createElement(Arrow_1.Arrow, { startPoint: startPoint, endPoint: endPoint, isHighlighted: isHighlighted(), showDebugGuideLines: showDebugGuideLines(), config: config }));
 };
-export default {
+exports.Playground = Playground;
+exports.default = {
     title: "Arrow",
-    decorators: [withKnobs],
+    decorators: [addon_knobs_1.withKnobs],
 };
-//# sourceMappingURL=Arrow.stories.js.map

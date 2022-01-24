@@ -1,7 +1,10 @@
+"use strict";
 /**
  * Copyright (c) ProductBoard, Inc.
  * All rights reserved.
  */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.calculateControlPoints = exports.calculateControlPointsWithoutBoundingBox = exports.calculateFixedLineInflectionConstant = exports.calculateCanvasDimensions = exports.calculateDeltas = exports.calculateLowDyControlPointShift = void 0;
 var MAX_Y_CONTROL_POINT_SHIFT = 50;
 var MAX_X_CONTROL_POINT_SHIFT = 10;
 // Y coordinates of our control points are moved in case of low delta Y to prevent lines overlapping.
@@ -29,7 +32,7 @@ var MAX_X_CONTROL_POINT_SHIFT = 10;
 //      |           +          +           +          +           +          |
 // -0.2 +--------------------------------------------------------------------+
 // -100         -50         0           50        100         150        200
-export var calculateLowDyControlPointShift = function (dx, dy, maxShift) {
+var calculateLowDyControlPointShift = function (dx, dy, maxShift) {
     if (maxShift === void 0) { maxShift = MAX_Y_CONTROL_POINT_SHIFT; }
     if (dx > 0)
         return 0;
@@ -40,26 +43,30 @@ export var calculateLowDyControlPointShift = function (dx, dy, maxShift) {
         return 0;
     return sign * value;
 };
-export var calculateDeltas = function (startPoint, endPoint) {
+exports.calculateLowDyControlPointShift = calculateLowDyControlPointShift;
+var calculateDeltas = function (startPoint, endPoint) {
     var dx = endPoint.x - startPoint.x;
     var dy = endPoint.y - startPoint.y;
     var absDx = Math.abs(dx);
     var absDy = Math.abs(dy);
     return { dx: dx, dy: dy, absDx: absDx, absDy: absDy };
 };
-export var calculateCanvasDimensions = function (_a) {
+exports.calculateDeltas = calculateDeltas;
+var calculateCanvasDimensions = function (_a) {
     var absDx = _a.absDx, absDy = _a.absDy, boundingBoxBuffer = _a.boundingBoxBuffer;
     var canvasWidth = absDx + 2 * boundingBoxBuffer.horizontal;
     var canvasHeight = absDy + 2 * boundingBoxBuffer.vertical;
     return { canvasWidth: canvasWidth, canvasHeight: canvasHeight };
 };
+exports.calculateCanvasDimensions = calculateCanvasDimensions;
 // Curve flexure should remain on the same area no matter of absolute deltas, so we have to slightly shift X coordinates of our control points. It was created empirically, it's not based on a clear formula.
-export var calculateFixedLineInflectionConstant = function (absDx, absDy) {
+var calculateFixedLineInflectionConstant = function (absDx, absDy) {
     var WEIGHT_X = 4;
     var WEIGHT_Y = 0.8;
     return Math.round(Math.sqrt(absDx) * WEIGHT_X + Math.sqrt(absDy) * WEIGHT_Y);
 };
-export var calculateControlPointsWithoutBoundingBox = function (_a) {
+exports.calculateFixedLineInflectionConstant = calculateFixedLineInflectionConstant;
+var calculateControlPointsWithoutBoundingBox = function (_a) {
     var _b, _c;
     var absDx = _a.absDx, absDy = _a.absDy, dx = _a.dx, dy = _a.dy;
     var leftTopX = 0;
@@ -70,9 +77,9 @@ export var calculateControlPointsWithoutBoundingBox = function (_a) {
         _b = [rightBottomX, leftTopX], leftTopX = _b[0], rightBottomX = _b[1];
     if (dy < 0)
         _c = [rightBottomY, leftTopY], leftTopY = _c[0], rightBottomY = _c[1];
-    var fixedLineInflectionConstant = calculateFixedLineInflectionConstant(absDx, absDy);
-    var lowDyYShift = calculateLowDyControlPointShift(dx, dy);
-    var lowDyXShift = Math.abs(calculateLowDyControlPointShift(dx, dy, MAX_X_CONTROL_POINT_SHIFT));
+    var fixedLineInflectionConstant = exports.calculateFixedLineInflectionConstant(absDx, absDy);
+    var lowDyYShift = exports.calculateLowDyControlPointShift(dx, dy);
+    var lowDyXShift = Math.abs(exports.calculateLowDyControlPointShift(dx, dy, MAX_X_CONTROL_POINT_SHIFT));
     var p1 = {
         x: leftTopX,
         y: leftTopY,
@@ -91,9 +98,10 @@ export var calculateControlPointsWithoutBoundingBox = function (_a) {
     };
     return { p1: p1, p2: p2, p3: p3, p4: p4 };
 };
-export var calculateControlPoints = function (_a) {
+exports.calculateControlPointsWithoutBoundingBox = calculateControlPointsWithoutBoundingBox;
+var calculateControlPoints = function (_a) {
     var boundingBoxElementsBuffer = _a.boundingBoxElementsBuffer, absDx = _a.absDx, absDy = _a.absDy, dx = _a.dx, dy = _a.dy;
-    var _b = calculateControlPointsWithoutBoundingBox({
+    var _b = exports.calculateControlPointsWithoutBoundingBox({
         absDx: absDx,
         absDy: absDy,
         dx: dx,
@@ -129,4 +137,4 @@ export var calculateControlPoints = function (_a) {
         boundingBoxBuffer: boundingBoxBuffer,
     };
 };
-//# sourceMappingURL=arrow-utils.js.map
+exports.calculateControlPoints = calculateControlPoints;
