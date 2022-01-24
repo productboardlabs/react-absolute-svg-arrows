@@ -1,46 +1,83 @@
-# Getting Started with Create React App
+# react-absolute-svg-arrows
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React implementation of SVG arrows with using absolute positioning.
 
-## Available Scripts
 
-In the project directory, you can run:
+<img src="./images/arrow1.png" />
+<img src="./images/arrow2.png" />
 
-### `yarn start`
+Detailed implementation of these arrows is described in following article series:
+https://medium.com/productboard-engineering/how-we-implemented-svg-arrows-in-react-the-basics-1-3-e469ce070e00
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Install
+```bash
+yarn add react-absolute-svg-arrows
+```
 
-### `yarn test`
+## Demo
+https://codesandbox.io/s/react-absolute-svg-arrows-jrzvb
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Basic use
 
-### `yarn build`
+```jsx
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+import { Arrow } from 'react-absolute-svg-arrows';
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+const startPoint = {
+  x: 100,
+  y: 100,
+};
+const endPoint = {
+  x: 600,
+  y: 300,
+};
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+function App() {
+  return (
+    <Arrow 
+      startPoint={startPoint} 
+      endPoint={endPoint} 
+    />
+  )
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Configuration
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```typescript
+export type Point = {
+  x: number;
+  y: number;
+};
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+type ArrowConfig = {
+  arrowColor?: string;
+  arrowHighlightedColor?: string;
+  controlPointsColor?: string;
+  boundingBoxColor?: string;
+  dotEndingBackground?: string;
+  dotEndingRadius?: number;
+  arrowHeadEndingSize?: number;
+  hoverableLineWidth?: number;
+  strokeWidth?: number;
+};
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+type ArrowProps = {
+  startPoint: Point;
+  endPoint: Point;
+  isHighlighted?: boolean;
+  showDebugGuideLines?: boolean;
+  onMouseEnter?: (e: React.MouseEvent) => void;
+  onMouseLeave?: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent) => void;
+  config?: ArrowConfig;
+  tooltip?: string;
+};
+```
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Storybook
+```bash
+yarn storybook
+```
